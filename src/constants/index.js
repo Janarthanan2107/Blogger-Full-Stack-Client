@@ -10,7 +10,7 @@ const blogsData = [
             { "text": "Great start!", "author": "Jane Smith", "date": "2023-03-02" },
             { "text": "Great start!", "author": "Jane Smith", "date": "2023-03-02" },
         ],
-        "image": "blogging_intro.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703168165882/d460aece-9364-46ba-9ae7-66e927295c66.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 15
     },
     {
@@ -21,7 +21,7 @@ const blogsData = [
         "tags": ["Fitness", "Exercise", "Outdoors"],
         "datePublished": "2023-03-05",
         "comments": [],
-        "image": "outdoor_exercise.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703947010358/e47c547e-c86f-4c2b-8dd1-42004ed10b86.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 20
     },
     {
@@ -39,7 +39,7 @@ const blogsData = [
             { "text": "I can't wait to try these recipes!", "author": "Mark Wilson", "date": "2023-03-11" },
             { "text": "I can't wait to try these recipes!", "author": "Mark Wilson", "date": "2023-03-11" },
         ],
-        "image": "smoothie_recipes.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/fzXVmIUsEbM/upload/dac45bf5681e23daa06da4241acf99be.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 25
     },
     {
@@ -52,7 +52,7 @@ const blogsData = [
         "comments": [
             { "text": "Absolutely breathtaking!", "author": "Chris Johnson", "date": "2023-03-16" }
         ],
-        "image": "nature_photography.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703747972205/f477415c-88f8-4478-8ea9-085399652bc8.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 30
     },
     {
@@ -63,7 +63,7 @@ const blogsData = [
         "tags": ["Mindfulness", "Wellness", "Lifestyle"],
         "datePublished": "2023-03-20",
         "comments": [],
-        "image": "mindful_living.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703675613571/0508b9ac-b6f8-4525-9ba7-5aac13ff6f3b.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 18
     },
     {
@@ -78,7 +78,7 @@ const blogsData = [
             { "text": "Fascinating read!", "author": "Ella Davis", "date": "2023-03-26" },
             { "text": "Fascinating read!", "author": "Ella Davis", "date": "2023-03-26" },
         ],
-        "image": "ai_trends.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1701891902332/f9f9bdbe-585d-444d-b551-c2c4fed94a57.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 22
     },
     {
@@ -89,7 +89,7 @@ const blogsData = [
         "tags": ["Books", "Reading", "Literature"],
         "datePublished": "2023-03-30",
         "comments": [],
-        "image": "must_read_books.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703224646916/66bf3d19-2b30-453c-8766-2f4bb4c619b1.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 28
     },
     {
@@ -103,7 +103,7 @@ const blogsData = [
             { "text": "Can't wait to try these out!", "author": "James Parker", "date": "2023-04-03" },
             { "text": "Can't wait to try these out!", "author": "James Parker", "date": "2023-04-03" },
         ],
-        "image": "diy_decor.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703170021005/f8cc64b1-2ffb-4dc1-a40d-7024f6ab7a94.webp?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 26
     },
     {
@@ -118,7 +118,7 @@ const blogsData = [
             { "text": "Amazing virtual journey!", "author": "Robert Turner", "date": "2023-04-06" },
             { "text": "Amazing virtual journey!", "author": "Robert Turner", "date": "2023-04-06" },
         ],
-        "image": "historical_landmarks.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703168165882/d460aece-9364-46ba-9ae7-66e927295c66.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 32
     },
     {
@@ -134,7 +134,7 @@ const blogsData = [
             { "text": "Very helpful tips!", "author": "Daniel Evans", "date": "2023-04-11" },
             { "text": "Very helpful tips!", "author": "Daniel Evans", "date": "2023-04-11" },
         ],
-        "image": "remote_work.jpg",
+        "image": "https://cdn.hashnode.com/res/hashnode/image/upload/v1703143418725/8840ef3a-d082-4d33-a45c-08b3afa2f4d2.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp",
         "likes": 24
     }
 ]

@@ -51,7 +51,7 @@ const CreateBlog = () => {
                 Submit
               </button>
             </div>
-            <div>
+            <div className="mb-2">
               {blogData.image && (
                 <img
                   src={blogData.image}

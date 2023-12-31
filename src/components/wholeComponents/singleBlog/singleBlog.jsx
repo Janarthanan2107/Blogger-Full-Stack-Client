@@ -19,6 +19,10 @@ const SingleBlog = () => {
     setCommentDialog(false);
   };
 
+  const closeCommentDialog = () => {
+    setCommentDialog(false);
+  };
+
   const filteredBlog = blogsData.find((blog) => blog.id == id);
 
   return (
@@ -27,7 +31,7 @@ const SingleBlog = () => {
         {/* blog image */}
         <div className="rounded-3xl border border-gray-400 overflow-hidden">
           <img
-            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1703168165882/d460aece-9364-46ba-9ae7-66e927295c66.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+            src={filteredBlog.image}
             alt="blog-img"
             className="rounded-3xl scale-100"
           />
@@ -39,7 +43,7 @@ const SingleBlog = () => {
         {/* date & author*/}
         <div className="flex gap-2 justify-center items-center text-gray-400 mb-3">
           <img
-            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697035804037/d91ddbd6-f8f0-464e-b5dd-912e25ab8470.jpeg?w=500&h=500&fit=crop&crop=faces&auto=compress,format&format=webp"
+            src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
             alt="user-img"
             className="w-[50px] h-[50px] rounded-full"
           />
@@ -49,7 +53,7 @@ const SingleBlog = () => {
 
         {/* content */}
         <div className="pb-5 mb-5 border-b border-gray-500">
-          {/* {filteredBlog.content} */}
+          {filteredBlog.content}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis odio,
           inventore vero quod molestias voluptatibus aspernatur dolore aut
           fugiat accusamus sed, nihil aliquam maxime nemo soluta! Nemo quibusdam
@@ -149,7 +153,129 @@ const SingleBlog = () => {
 
             {/* comment dialog box */}
             {commentDialog && (
-              <div className="absolute right-[17rem] -mt-80 z-10 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div
+                class="relative z-10"
+                aria-labelledby="slide-over-title"
+                role="dialog"
+                aria-modal="true"
+              >
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+                <div class="fixed inset-0 overflow-hidden">
+                  <div class="absolute inset-0 overflow-hidden">
+                    <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                      <div class="pointer-events-auto w-screen max-w-md">
+                        <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                          <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                            <div class="flex items-start justify-between">
+                              <h2
+                                class="text-lg font-medium text-gray-900"
+                                id="slide-over-title"
+                              >
+                                Comments Section
+                              </h2>
+                              <div class="ml-3 flex h-7 items-center">
+                                <button
+                                  type="button"
+                                  class="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                                  onClick={closeCommentDialog}
+                                >
+                                  <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M6 18L18 6M6 6l12 12"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </div>
+
+                            <div class="mt-8">
+                              <div class="flow-root">
+                                <ul
+                                  role="list"
+                                  class="-my-6 divide-y divide-gray-200"
+                                >
+                                  {/* every comments here */}
+                                  {filteredBlog.comments.map((comment) => {
+                                    return (
+                                      <li>
+                                        <div className="flex flex-col gap-2 py-4">
+                                          <div className="flex gap-2">
+                                            <img
+                                              src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697035804037/d91ddbd6-f8f0-464e-b5dd-912e25ab8470.jpeg?w=500&h=500&fit=crop&crop=faces&auto=compress,format&format=webp"
+                                              alt="user-img"
+                                              className="w-[50px] h-[50px] rounded-full"
+                                            />
+                                            <div>
+                                              <h3 className="text-base font-semibold">
+                                                {comment.author}
+                                              </h3>
+                                              <span className="flex text-gray-400 gap-2">
+                                                <p>Janarthanan@gmail.com</p>
+                                                <p>{comment.date}</p>
+                                              </span>
+                                            </div>
+                                          </div>
+                                          <div>
+                                            <p>{comment.text}</p>
+                                          </div>
+                                        </div>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                            <div class="flex justify-between text-base font-medium text-gray-900">
+                              <input
+                                type="text"
+                                placeholder="Add Your comments here"
+                                className="p-2 focus:outline-none"
+                              />
+                            </div>
+
+                            <div class="mt-6">
+                              <a
+                                href="#"
+                                class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                onClick={handleCommentSubmit}
+                              >
+                                Submit
+                              </a>
+                            </div>
+                            <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                              <p>
+                                <button
+                                  type="button"
+                                  class="font-medium text-indigo-600 hover:text-indigo-500 ml-1"
+                                  onClick={closeCommentDialog}
+                                >
+                                  Cancel
+                                  <span aria-hidden="true"> &rarr;</span>
+                                </button>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {/* <div className="absolute right-[17rem] -mt-80 z-10 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <form onSubmit={handleCommentSubmit}>
                   <label className="px-3 font-medium text-gray-400">
                     Comments:
@@ -173,8 +299,7 @@ const SingleBlog = () => {
                     </button>
                   </div>
                 </form>
-              </div>
-            )}
+              </div> */}
           </div>
         </div>
 

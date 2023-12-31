@@ -22,7 +22,7 @@ const FeedCard = ({ blog }) => {
         {/* user details */}
         <div className="flex gap-2 items-center">
           <img
-            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697035804037/d91ddbd6-f8f0-464e-b5dd-912e25ab8470.jpeg?w=500&h=500&fit=crop&crop=faces&auto=compress,format&format=webp"
+            src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
             alt="user-img"
             className="w-[50px] h-[50px] rounded-full"
           />
@@ -48,7 +48,7 @@ const FeedCard = ({ blog }) => {
       <div className="flex flex-col gap-2">
         {/* images */}
         <img
-          src="https://cdn.hashnode.com/res/hashnode/image/upload/v1703848098113/24f3034f-b8f7-4d0f-a1de-620df9f7f06c.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+          src={image}
           alt="blog-img"
           className="object-cover rounded-xl max-w-52 max-h-40"
         />

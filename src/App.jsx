@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, Root, CreateBlog } from "./routes";
+import { Home, Root, CreateBlog, NotFound } from "./routes";
 import { SingleBlog } from "./components";
 
 import "./App.css";
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     // error element
-    // errorElement: ,
+    errorElement: <NotFound />,
 
     // childrens for the root
     children: [
