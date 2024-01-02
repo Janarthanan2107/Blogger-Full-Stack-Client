@@ -34,7 +34,7 @@ const Feeds = () => {
       <div className="w-[75%]">
         {/* head section */}
         <div>
-          <h3 className="font-semibold text-sm text-gray-400">
+          <h3 className="font-semibold text-sm text-gray-500">
             Embark on a journey of words and wisdom. Explore stories that
             inspire, ideas that resonate, and a community that connects. Your
             thoughts, our canvas – let the blogging adventure begin. Unleash

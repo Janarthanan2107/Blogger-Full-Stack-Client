@@ -88,7 +88,7 @@ const Navbar = () => {
 
           {/* profile menu */}
           {userMenu && (
-            <div className="absolute top-12 right-40 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="absolute top-12 right-36 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1 font-medium">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
                 <a
