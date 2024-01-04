@@ -95,7 +95,6 @@ const Navbar = () => {
                   href="#"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                   role="menuitem"
-                  tabindex="-1"
                   id="menu-item-0"
                 >
                   About user
@@ -104,7 +103,6 @@ const Navbar = () => {
                   href="#"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                   role="menuitem"
-                  tabindex="-1"
                   id="menu-item-1"
                 >
                   Support
@@ -113,7 +111,6 @@ const Navbar = () => {
                   href="#"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                   role="menuitem"
-                  tabindex="-1"
                   id="menu-item-2"
                 >
                   License
@@ -123,7 +120,6 @@ const Navbar = () => {
                     type="submit"
                     className="text-gray-700 block w-full px-4 py-2 text-left text-sm hover:bg-blue-600 hover:text-white"
                     role="menuitem"
-                    tabindex="-1"
                     id="menu-item-3"
                   >
                     Sign out
