@@ -5,9 +5,18 @@ import { IoMdContact } from "react-icons/io";
 
 // constants
 import { blogsData } from "../../../constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useBlogContext } from "../../../context/blog.Context";
+import { config } from "../../../constants/config";
 
 const Feeds = () => {
+  const { fetchBlogs, blogs } = useBlogContext();
+
+  useEffect(() => {
+    // Fetch blogs when the component mounts
+    fetchBlogs(config.url);
+  }, []);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -15,7 +24,7 @@ const Feeds = () => {
     const query = e.target.value.toLowerCase();
     setSearchTerm(query);
 
-    const filteredBlogs = blogsData.filter((blog) => {
+    const filteredBlogs = blogs.data.filter((blog) => {
       const lowerCaseTitle = blog.title.toLowerCase();
       const lowerCaseAuthor = blog.author.toLowerCase();
 
@@ -44,7 +53,7 @@ const Feeds = () => {
             <input
               type="text"
               placeholder="Search.."
-              className="py-[0.8rem] px-3 text-gray-400 border-gray-300 border rounded-lg w-full"
+              className="py-[0.8rem] px-3 text-gray-600 border-gray-500 border rounded-lg w-full"
               value={searchTerm}
               onChange={handleSearch}
             />
@@ -57,8 +66,8 @@ const Feeds = () => {
               Top blogs :
             </h4>
             {/* feeds */}
-            {(searchTerm === "" ? blogsData : searchResults).map((blog) => (
-              <a href={`/blog/${blog.id}`} key={blog.id}>
+            {(searchTerm === "" ? blogs.data : searchResults).map((blog) => (
+              <a href={`/blog/${blog._id}`} key={blog._id}>
                 <FeedCard blog={blog} />
               </a>
             ))}
@@ -70,16 +79,16 @@ const Feeds = () => {
               <h4 className="font-semibold text-base mb-4 text-gray-700 underline underline-offset-8 px-4">
                 Top Commentator's :
               </h4>
-              {blogsData.map((blog) => {
+              {blogs.data?.map((blog) => {
                 return (
                   <div
-                    key={blog.id}
+                    key={blog._id}
                     className="flex justify-between items-center text-sm hover:bg-gray-100"
                   >
                     <p className="text-gray-700 font-medium block px-4 py-2 mb-1">
                       {blog.author}
                     </p>
-                    <IoMdContact className="mr-3 text-lg" />
+                    <IoMdContact className="mr-3 text-3xl" />
                   </div>
                 );
               })}
