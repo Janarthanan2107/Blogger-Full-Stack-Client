@@ -13,7 +13,7 @@ Follow these steps to get the project up and running on your local machine:
 1. **Clone the repository:**
 
    ```bash
-   https://github.com/Janarthanan2107/portfolio.git
+   [https://github.com/Janarthanan2107/portfolio.git](https://github.com/Janarthanan2107/Blogger-Full-Stack-Client.git)
    ```
 
 2. **Install dependencies:**
