@@ -7,6 +7,8 @@ import { RiQuillPenLine } from "react-icons/ri";
 const Navbar = () => {
   const [userMenu, setUserMenu] = useState(false);
 
+  const [user, setUser] = useState(false);
+
   const menuToggle = () => {
     setUserMenu(!userMenu);
   };
@@ -73,19 +75,33 @@ const Navbar = () => {
             Write
           </NavLink>
 
-          <img
-            className="h-8 w-8 rounded-full"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
+          {user ? (
+            <>
+              <img
+                className="h-8 w-8 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
 
-          <CiMenuKebab
-            className={`${
-              userMenu ? `text-blue-700 ` : ``
-            }hover:text-blue-500 cursor-pointer`}
-            onClick={menuToggle}
-          />
-
+              <CiMenuKebab
+                className={`${
+                  userMenu ? `text-blue-700 ` : ``
+                }hover:text-blue-500 cursor-pointer`}
+                onClick={menuToggle}
+              />
+            </>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-white bg-blue-500 rounded-md px-3 py-1 text-sm font-medium cursor-pointer"
+                  : "text-gray-500 rounded-md px-3 py-1 text-sm font-medium cursor-pointer"
+              }
+            >
+              Login
+            </NavLink>
+          )}
           {/* profile menu */}
           {userMenu && (
             <div className="absolute top-12 right-36 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">

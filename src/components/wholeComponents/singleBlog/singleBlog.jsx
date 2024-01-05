@@ -1,14 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useBlogContext } from "../../../context/blog.Context";
-
+import { MdDelete } from "react-icons/md";
+import { TbEdit } from "react-icons/tb";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { BiComment } from "react-icons/bi";
+import toast, { Toaster } from "react-hot-toast";
 
 const SingleBlog = () => {
   const { id } = useParams();
 
-  const { getSingleBlog, blogs, singleBlog } = useBlogContext();
+  const { getSingleBlog, blogs, singleBlog, deleteSingleBlog } =
+    useBlogContext();
+
+  let navigate = useNavigate();
 
   const fetchSingleBlog = async (id) => {
     try {
@@ -38,6 +43,19 @@ const SingleBlog = () => {
     setCommentDialog(false);
   };
 
+  const deleteHandler = async (id) => {
+    try {
+      await deleteSingleBlog(id);
+      toast.success("Data Successfully deleted");
+      // Redirect to another page after successful deletion
+      setTimeout(() => {
+        navigate("/"); // Replace "/blogs" with the path you want to redirect to
+      }, 1000);
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+    }
+  };
+
   // Check if blogs or blogs.data is undefined
   if (!blogs || !blogs.data) {
     return <p>Blogs data is not available.</p>;
@@ -56,6 +74,27 @@ const SingleBlog = () => {
 
   return (
     <>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
       <div className="flex justify-center">
         <div className="w-[70%] flex flex-col gap-3">
           {/* blog image */}
@@ -63,12 +102,31 @@ const SingleBlog = () => {
             <img
               src={singleBlog.image}
               alt="blog-img"
-              className="rounded-3xl scale-100"
+              className="rounded-3xl scale-100 h-[500px]"
             />
           </div>
 
           {/* heading */}
-          <h1 className="text-2xl text-center">{singleBlog.title}</h1>
+          <div className="grid grid-cols-3 gap-4">
+            <div></div>
+            <div>
+              <h1 className="text-2xl text-center capitalize font-semibold">
+                {singleBlog.title}
+              </h1>
+            </div>
+            <div className="text-3xl flex gap-3">
+              <button
+                type="button"
+                className="text-red-500"
+                onClick={() => deleteHandler(singleBlog._id)}
+              >
+                <MdDelete />
+              </button>
+              {/* <button type="button" className="text-yellow-500">
+                <TbEdit />
+              </button> */}
+            </div>
+          </div>
 
           {/* date & author*/}
           <div className="flex gap-2 justify-center items-center text-gray-400 mb-3">
@@ -77,7 +135,7 @@ const SingleBlog = () => {
               alt="user-img"
               className="w-[50px] h-[50px] rounded-full"
             />
-            <p className="text-sm">{singleBlog.author}</p>
+            <p className="text-sm capitalize">{singleBlog.author}</p>
             <p className="text-sm">
               {formattedDate} {formattedTime}
             </p>

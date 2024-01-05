@@ -15,6 +15,13 @@ const FeedCard = ({ blog }) => {
 
   const getFirstTag = tags.filter((tag, index) => index < 1);
 
+  const originalDateString = datePublished;
+  const originalDate = new Date(originalDateString);
+
+  // Format the date in a human-readable way
+  const formattedDate = originalDate.toLocaleDateString(); // Change according to your requirements
+  const formattedTime = originalDate.toLocaleTimeString(); // Change according to your requirements
+
   return (
     <div className="p-4 rounded-2xl border-gray-300 border flex justify-between items-center gap-5 mb-5 cursor-pointer hover:shadow-lg">
       {/* details */}
@@ -30,7 +37,9 @@ const FeedCard = ({ blog }) => {
             <h3 className="text-base font-semibold">{author}</h3>
             <span className="flex text-gray-400 gap-2">
               <p>Janarthanan@gmail.com</p>
-              <p>{datePublished}</p>
+              <p>
+                {formattedDate} {formattedTime}
+              </p>
             </span>
           </div>
         </div>

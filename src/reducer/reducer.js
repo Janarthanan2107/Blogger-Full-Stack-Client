@@ -14,8 +14,6 @@ const blogReducer = (state, action) => {
             }
 
         case "GET_SINGLE_BLOG":
-            console.log("state", state.blogs)
-            console.log(action.payload)
             return {
                 ...state,
                 singleBlog: action.payload
@@ -27,6 +25,8 @@ const blogReducer = (state, action) => {
             }
 
         case "DELETE":
+            console.log("state", state.blogs)
+            console.log(action.payload)
             return {
                 ...state
             }

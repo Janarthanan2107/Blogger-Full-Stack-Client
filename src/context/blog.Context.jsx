@@ -52,12 +52,24 @@ const BlogContextProvider = ({ children }) => {
     }
   };
 
+  const deleteSingleBlog = async (blogId) => {
+    console.log(blogId);
+    try {
+      const response = await axios.delete(`${config.url}/${blogId}`);
+      console.log(response);
+      dispatch({ type: "DELETE", payload: response.data.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //   assign the values
   const values = {
     ...state,
     fetchBlogs,
     addBlog,
     getSingleBlog,
+    deleteSingleBlog,
   };
 
   return (

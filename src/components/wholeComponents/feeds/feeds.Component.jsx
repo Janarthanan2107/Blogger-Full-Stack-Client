@@ -66,11 +66,23 @@ const Feeds = () => {
               Top blogs :
             </h4>
             {/* feeds */}
-            {(searchTerm === "" ? blogs.data : searchResults).map((blog) => (
-              <a href={`/blog/${blog._id}`} key={blog._id}>
-                <FeedCard blog={blog} />
-              </a>
-            ))}
+            {(searchTerm === "" ? blogs.data : searchResults)?.length > 0 ? (
+              (searchTerm === "" ? blogs.data : searchResults)?.map((blog) => (
+                <a href={`/blog/${blog._id}`} key={blog._id}>
+                  <FeedCard blog={blog} />
+                </a>
+              ))
+            ) : (
+              <div className="p-4 rounded-2xl border-gray-300 border flex justify-between items-center gap-5 mb-5 cursor-pointer hover:shadow-lg">
+                {/* details */}
+                <div className="flex flex-col gap-2 w-[600px]">
+                  {/* user details */}
+                  <div className="flex gap-2 items-center">
+                    <p>No data found</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* side bar content*/}

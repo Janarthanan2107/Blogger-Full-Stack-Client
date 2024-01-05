@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { BiSolidImageAdd } from "react-icons/bi";
 import { useBlogContext } from "../../context/blog.Context";
 import FileBase64 from "react-file-base64";
+import toast, { Toaster } from "react-hot-toast";
 
 const CreateBlog = () => {
   // context value
@@ -30,9 +31,9 @@ const CreateBlog = () => {
   //   }
   // };
 
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
+  // const handleButtonClick = () => {
+  //   fileInputRef.current.click();
+  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,22 +54,48 @@ const CreateBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Blog Data:", blogData);
-    // You can perform additional actions here, such as sending data to the server.
-    await addBlog(blogData);
-    setBlogData({
-      title: "",
-      content: "",
-      author: "Janarthanan",
-      tags: [],
-      datePublished: new Date().toISOString(),
-      comments: [],
-      image: null,
-      likes: 50,
-    });
+    try {
+      await addBlog(blogData);
+      toast.success("Data Successfully created!");
+      // You can perform additional actions here, such as sending data to the server.
+      setBlogData({
+        title: "",
+        content: "",
+        author: "Janarthanan",
+        tags: [],
+        datePublished: new Date().toISOString(),
+        comments: [],
+        image: null,
+        likes: 50,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="flex justify-center">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
       <div className="w-[70%]">
         <div className="flex flex-col gap-2">
           <form className="mb-5" onSubmit={handleSubmit}>
@@ -94,7 +121,6 @@ const CreateBlog = () => {
                 id="image"
                 accept="image/*"
                 ref={fileInputRef}
-                className="file"
                 onDone={({ base64 }) => {
                   setBlogData({ ...blogData, image: base64 });
                 }}
