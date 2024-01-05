@@ -1,10 +1,10 @@
-## Portfolio
+## Blogger Application
 
 A brief description of your React application.
 
 ## Live Demo
 
-You can access a live demo of this project [here](https://fs-jan-portfolio.netlify.app/).
+You can access a live demo of this project [here](https://blogg-sharing.netlify.app/).
 
 ## Installation
 
