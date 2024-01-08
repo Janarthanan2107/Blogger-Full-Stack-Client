@@ -122,9 +122,9 @@ const SingleBlog = () => {
               >
                 <MdDelete />
               </button>
-              {/* <button type="button" className="text-yellow-500">
+              <button type="button" className="text-yellow-500">
                 <TbEdit />
-              </button> */}
+              </button>
             </div>
           </div>
 
