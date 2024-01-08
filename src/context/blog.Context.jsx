@@ -43,9 +43,9 @@ const BlogContextProvider = ({ children }) => {
   };
 
   const getSingleBlog = async (blogId) => {
+    console.log(blogId);
     try {
       const response = await axios.get(`${config.url}/${blogId}`);
-      // console.log(response);
       dispatch({ type: "GET_SINGLE_BLOG", payload: response.data.data });
     } catch (error) {
       console.log(error);
@@ -63,6 +63,18 @@ const BlogContextProvider = ({ children }) => {
     }
   };
 
+  const updateBlog = async (blogId, newBlog) => {
+    console.log(blogId);
+    console.log(newBlog);
+    try {
+      const response = await axios.put(`${config.url}/${blogId}`, newBlog);
+      console.log(response);
+      dispatch({ type: "UPDATE_BLOG", payload: response.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //   assign the values
   const values = {
     ...state,
@@ -70,6 +82,7 @@ const BlogContextProvider = ({ children }) => {
     addBlog,
     getSingleBlog,
     deleteSingleBlog,
+    updateBlog,
   };
 
   return (

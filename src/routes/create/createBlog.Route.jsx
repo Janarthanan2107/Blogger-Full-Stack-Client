@@ -1,12 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { BiSolidImageAdd } from "react-icons/bi";
 import { useBlogContext } from "../../context/blog.Context";
 import FileBase64 from "react-file-base64";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CreateBlog = () => {
   // context value
-  const { addBlog } = useBlogContext();
+  const { id } = useParams();
+  const { addBlog, updateBlog, getSingleBlog, singleBlog } = useBlogContext();
+  const navigate = useNavigate();
 
   const [blogData, setBlogData] = useState({
     title: "",
@@ -18,22 +21,10 @@ const CreateBlog = () => {
     image: null,
     likes: 50,
   });
+
+  const [isEditing, setIsEditing] = useState(false);
+
   const fileInputRef = useRef(null);
-
-  // const handleImageChange = (e) => {
-  //   const selectedImage = e.target.files[0];
-
-  //   if (selectedImage) {
-  //     setBlogData((prevData) => ({
-  //       ...prevData,
-  //       image: URL.createObjectURL(selectedImage),
-  //     }));
-  //   }
-  // };
-
-  // const handleButtonClick = () => {
-  //   fileInputRef.current.click();
-  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,23 +46,59 @@ const CreateBlog = () => {
     e.preventDefault();
     console.log("Blog Data:", blogData);
     try {
-      await addBlog(blogData);
-      toast.success("Data Successfully created!");
-      // You can perform additional actions here, such as sending data to the server.
-      setBlogData({
-        title: "",
-        content: "",
-        author: "Janarthanan",
-        tags: [],
-        datePublished: new Date().toISOString(),
-        comments: [],
-        image: null,
-        likes: 50,
-      });
+      if (isEditing) {
+        await updateBlog(id, blogData);
+        toast.success("Data Successfully updated!");
+        // You can perform additional actions here, such as sending data to the server.
+        setBlogData({
+          title: "",
+          content: "",
+          author: "Janarthanan",
+          tags: [],
+          datePublished: new Date().toISOString(),
+          comments: [],
+          image: null,
+          likes: 50,
+        });
+        navigate(`/blog/${id}`);
+      } else {
+        await addBlog(blogData);
+        toast.success("Data Successfully created!");
+        // You can perform additional actions here, such as sending data to the server.
+        setBlogData({
+          title: "",
+          content: "",
+          author: "Janarthanan",
+          tags: [],
+          datePublished: new Date().toISOString(),
+          comments: [],
+          image: null,
+          likes: 50,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getSingleBlog(id);
+        setIsEditing(true);
+        // console.log(singleBlog); // its undefined
+        setBlogData(singleBlog);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  console.log(isEditing);
 
   return (
     <div className="flex justify-center">
@@ -104,7 +131,7 @@ const CreateBlog = () => {
                 type="submit"
                 className="bg-blue-500 text-white p-3 rounded-md cursor-pointer"
               >
-                Submit
+                {isEditing ? "Update" : "Submit"}
               </button>
             </div>
             <div className="mb-2">

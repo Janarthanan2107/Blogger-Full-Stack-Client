@@ -56,6 +56,10 @@ const SingleBlog = () => {
     }
   };
 
+  const updateBlogHandler = (id) => {
+    navigate(`/createBlog/${id}`);
+  };
+
   // Check if blogs or blogs.data is undefined
   if (!blogs || !blogs.data) {
     return <p>Blogs data is not available.</p>;
@@ -122,7 +126,11 @@ const SingleBlog = () => {
               >
                 <MdDelete />
               </button>
-              <button type="button" className="text-yellow-500">
+              <button
+                type="button"
+                className="text-yellow-500"
+                onClick={() => updateBlogHandler(singleBlog._id)}
+              >
                 <TbEdit />
               </button>
             </div>
