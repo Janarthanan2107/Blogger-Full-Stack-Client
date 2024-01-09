@@ -1,4 +1,4 @@
-const blogReducer = (state, action) => {
+export const blogReducer = (state, action) => {
     switch (action.type) {
         case "FETCH_BLOGS":
             return {
@@ -14,15 +14,15 @@ const blogReducer = (state, action) => {
             }
 
         case "GET_SINGLE_BLOG":
+            console.log("state", state.blogs)
+            console.log(action.payload)
+
             return {
                 ...state,
                 singleBlog: action.payload
             }
 
         case "UPDATE_BLOG":
-            console.log("state", state.blogs)
-            console.log(action.payload)
-
             // Ensure that state.blogs is an array before using map
             if (Array.isArray(state.blogs.data)) {
                 // Assuming you want to update a specific blog in the array
@@ -52,4 +52,38 @@ const blogReducer = (state, action) => {
     }
 };
 
-export default blogReducer;
+export const userReducer = (state, action) => {
+    switch (action.type) {
+        case "FETCH_USER":
+
+            return {
+                ...state,
+                users: action.payload,
+            };
+
+        case "ADD_USER":
+            return {
+                ...state,
+                users: [state.users, action.payload],
+            }
+
+        case "GET_SINGLE_USER":
+            return {
+                ...state,
+                singleUser: action.payload
+            }
+
+        case "UPDATE_USER":
+            return {
+                ...state
+            }
+
+        case "DELETE_USER":
+            return {
+                ...state
+            }
+
+        default:
+            return state;
+    }
+}

@@ -7,14 +7,17 @@ import { IoMdContact } from "react-icons/io";
 import { blogsData } from "../../../constants";
 import { useEffect, useState } from "react";
 import { useBlogContext } from "../../../context/blog.Context";
+import { useUserContext } from "../../../context/user.Context";
 import { config } from "../../../constants/config";
 
 const Feeds = () => {
   const { fetchBlogs, blogs } = useBlogContext();
+  const { fetchUsers, users } = useUserContext();
 
   useEffect(() => {
     // Fetch blogs when the component mounts
-    fetchBlogs(config.url);
+    fetchBlogs();
+    fetchUsers();
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");

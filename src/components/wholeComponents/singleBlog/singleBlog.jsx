@@ -17,8 +17,7 @@ const SingleBlog = () => {
 
   const fetchSingleBlog = async (id) => {
     try {
-      const res = await getSingleBlog(id);
-      console.log(res); // This might be a Promise, so it could be undefined here
+      await getSingleBlog(id);
     } catch (error) {
       console.error(error);
     }
@@ -61,9 +60,9 @@ const SingleBlog = () => {
   };
 
   // Check if blogs or blogs.data is undefined
-  if (!blogs || !blogs.data) {
-    return <p>Blogs data is not available.</p>;
-  }
+  // if (!blogs || !blogs.data) {
+  //   return <p>Blogs data is not available.</p>;
+  // }
 
   console.log(singleBlog);
 

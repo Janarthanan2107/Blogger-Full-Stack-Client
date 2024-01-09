@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, Root, CreateBlog, NotFound } from "./routes";
+import { Home, Root, CreateBlog, NotFound, Login, SignUp } from "./routes";
 import { SingleBlog } from "./components";
 
 import "./App.css";
@@ -14,6 +14,7 @@ const router = createBrowserRouter([
 
     // childrens for the root
     children: [
+      // blog
       {
         path: "",
         element: <Home />,
@@ -29,6 +30,16 @@ const router = createBrowserRouter([
       {
         path: "/createBlog/:id",
         element: <CreateBlog />,
+      },
+
+      // user
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp />,
       },
     ],
   },

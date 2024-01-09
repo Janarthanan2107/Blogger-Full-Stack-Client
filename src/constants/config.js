@@ -1,5 +1,6 @@
 const config = {
-    url: "https://dark-cyan-yak-gown.cyclic.app/api/v1/blog"
+    // url: "https://important-lion-headscarf.cyclic.app/api/v1/"
+    url: "http://localhost:5000/api/v1/"
 }
 
 export { config }
