@@ -34,9 +34,8 @@ const FeedCard = ({ blog }) => {
             className="w-[50px] h-[50px] rounded-full"
           />
           <div>
-            <h3 className="text-base font-semibold">{author}</h3>
+            <h3 className="text-base font-semibold capitalize">{author}</h3>
             <span className="flex text-gray-400 gap-2">
-              <p>Janarthanan@gmail.com</p>
               <p>
                 {formattedDate} {formattedTime}
               </p>
@@ -46,8 +45,12 @@ const FeedCard = ({ blog }) => {
 
         {/* blog details */}
         <div className="w-[500px] flex flex-col gap-1 mt-3">
-          <p className="text-base font-semibold line-clamp-1">{title}</p>
-          <p className="line-clamp-2 text-gray-400">{content}</p>
+          <p className="text-[1.2rem] font-semibold line-clamp-1">
+            {title.charAt(0).toUpperCase() + title.slice(1)}
+          </p>
+          <p className="line-clamp-2 text-gray-400 text-sm mt-3">
+            {content.charAt(0).toUpperCase() + content.slice(1)}
+          </p>
           <span className="flex gap-2 items-center mt-2">
             <BiComment />
             <p className="text-gray-400 text-sm">{comments.length}</p>

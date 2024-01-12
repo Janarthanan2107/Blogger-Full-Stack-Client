@@ -12,12 +12,20 @@ import { config } from "../../../constants/config";
 
 const Feeds = () => {
   const { fetchBlogs, blogs } = useBlogContext();
-  const { fetchUsers, users } = useUserContext();
+  const { fetchUsers, token, loggedInUser, users } = useUserContext();
 
   useEffect(() => {
     // Fetch blogs when the component mounts
     fetchBlogs();
     fetchUsers();
+
+    if (token === "" && loggedInUser === "") {
+      return;
+    } else {
+      window.location.reload();
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(loggedInUser));
+    }
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");

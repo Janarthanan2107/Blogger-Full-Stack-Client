@@ -14,9 +14,6 @@ export const blogReducer = (state, action) => {
             }
 
         case "GET_SINGLE_BLOG":
-            console.log("state", state.blogs)
-            console.log(action.payload)
-
             return {
                 ...state,
                 singleBlog: action.payload
@@ -81,6 +78,15 @@ export const userReducer = (state, action) => {
         case "DELETE_USER":
             return {
                 ...state
+            }
+
+        case "LOGIN_USER":
+            // console.log("state:", state)
+            // console.log("action:", action.payload)
+            return {
+                ...state,
+                token: action.payload.token,
+                loggedInUser: action.payload.user
             }
 
         default:

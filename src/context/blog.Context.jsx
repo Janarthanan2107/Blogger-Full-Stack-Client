@@ -42,7 +42,7 @@ const BlogContextProvider = ({ children }) => {
     console.log(blogId);
     try {
       const response = await axios.get(`${config.url + "blog/"}${blogId}`);
-      console.log(response.data.data);
+      // console.log(response.data.data);
       dispatch({ type: "GET_SINGLE_BLOG", payload: response.data.data });
     } catch (error) {
       console.log(error);
@@ -50,7 +50,7 @@ const BlogContextProvider = ({ children }) => {
   };
 
   const deleteSingleBlog = async (blogId) => {
-    console.log(blogId);
+    // console.log(blogId);
     try {
       const response = await axios.delete(`${config.url + "blog/"}${blogId}`);
       console.log(response);

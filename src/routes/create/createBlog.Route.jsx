@@ -4,17 +4,26 @@ import { useBlogContext } from "../../context/blog.Context";
 import FileBase64 from "react-file-base64";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { useUserContext } from "../../context/user.Context";
 
 const CreateBlog = () => {
   // context value
   const { id } = useParams();
   const { addBlog, updateBlog, getSingleBlog, singleBlog } = useBlogContext();
+  const { fetchUsers, token, loggedInUser, users } = useUserContext();
+
+  // Retrieve the user object from localStorage
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+
+  console.log(user);
+
   const navigate = useNavigate();
 
   const [blogData, setBlogData] = useState({
     title: "",
     content: "",
-    author: "Janarthanan",
+    author: user.username,
     tags: [],
     datePublished: new Date().toISOString(),
     comments: [],

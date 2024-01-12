@@ -11,6 +11,8 @@ const UserContext = createContext();
 const initialValues = {
   users: [],
   singleUser: "",
+  token: "",
+  loggedInUser: "",
 };
 
 // create the context provider
@@ -21,10 +23,11 @@ const UserContextProvider = ({ children }) => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(config.url + "user");
-      console.log("Fetched Data:", response.data.data);
+      console.log("Fetched user data:", response.data.data);
       dispatch({ type: "FETCH_USERS", payload: response.data });
     } catch (error) {
-      console.error("Error fetching users:", error.response.data);
+      console.error("Error in adding users:", error.response.data);
+      throw error.response.data; // Throw the error message
     }
   };
 
@@ -34,7 +37,19 @@ const UserContextProvider = ({ children }) => {
       console.log("Added Data:", response.data.data);
       dispatch({ type: "ADD_USER", payload: response.data });
     } catch (error) {
-      console.error("Error fetching users:", error.response.data);
+      console.error("Error in adding users:", error.response.data);
+      throw error.response.data; // Throw the error message
+    }
+  };
+
+  const loginUser = async (user) => {
+    try {
+      const response = await axios.post(config.url + "user/login", user);
+      console.log("User Logged in:", response.data);
+      dispatch({ type: "LOGIN_USER", payload: response.data });
+    } catch (error) {
+      console.error("Error in adding users:", error.response.data.message);
+      throw error.response.data.message; // Throw the error message
     }
   };
 
@@ -43,6 +58,7 @@ const UserContextProvider = ({ children }) => {
     ...state,
     fetchUsers,
     addUser,
+    loginUser,
   };
 
   return (

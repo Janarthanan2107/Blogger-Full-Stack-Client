@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // react hooks
 import { NavLink, useNavigate } from "react-router-dom";
 import { CiMenuKebab } from "react-icons/ci";
@@ -7,10 +7,22 @@ import { RiQuillPenLine } from "react-icons/ri";
 const Navbar = () => {
   const [userMenu, setUserMenu] = useState(false);
 
-  const [user, setUser] = useState(false);
+  const navigate = useNavigate();
 
   const menuToggle = () => {
     setUserMenu(!userMenu);
+  };
+
+  // Retrieve the user object from localStorage
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+
+  const isUserSignedIn = !!localStorage.getItem("token");
+
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
@@ -75,13 +87,17 @@ const Navbar = () => {
             Write
           </NavLink>
 
-          {user ? (
+          {isUserSignedIn ? (
             <>
               <img
-                className="h-8 w-8 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
+                className="h-8 w-8 rounded-full border border-gray-400"
+                src={user.image}
+                alt={user.username}
               />
+
+              <p className="font-medium capitalize text-[13px]">
+                {user.username}
+              </p>
 
               <CiMenuKebab
                 className={`${
@@ -107,7 +123,7 @@ const Navbar = () => {
             <div className="absolute top-12 right-36 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1 font-medium">
                 {/* <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --> */}
-                <a
+                {/* <a
                   href="#"
                   className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                   role="menuitem"
@@ -130,13 +146,14 @@ const Navbar = () => {
                   id="menu-item-2"
                 >
                   License
-                </a>
-                <form method="POST" action="#" role="none">
+                </a> */}
+                <form>
                   <button
                     type="submit"
                     className="text-gray-700 block w-full px-4 py-2 text-left text-sm hover:bg-blue-600 hover:text-white"
                     role="menuitem"
                     id="menu-item-3"
+                    onClick={handleSignOut}
                   >
                     Sign out
                   </button>

@@ -10,7 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 const SingleBlog = () => {
   const { id } = useParams();
 
-  const { getSingleBlog, blogs, singleBlog, deleteSingleBlog } =
+  const { getSingleBlog, singleBlog, deleteSingleBlog, updateBlog } =
     useBlogContext();
 
   let navigate = useNavigate();
@@ -23,19 +23,49 @@ const SingleBlog = () => {
     }
   };
 
-  useEffect(() => {
-    fetchSingleBlog(id);
-  }, [id]);
+  // Retrieve the user object from localStorage
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
 
-  const [commentDialog, setCommentDialog] = useState(false);
+  const [commentText, setCommentText] = useState("");
 
-  const commentDialogHandler = () => {
-    setCommentDialog(!commentDialog);
+  const handleChange = (e) => {
+    setCommentText(e.target.value);
   };
 
-  const handleCommentSubmit = (e) => {
+  const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    setCommentDialog(false);
+
+    try {
+      const newComment = {
+        text: commentText,
+        author: user.username,
+        date: new Date().toISOString(),
+      };
+
+      // Add the new comment to the existing comments array
+      const updatedBlogData = {
+        ...singleBlog,
+        comments: [...singleBlog.comments, newComment],
+      };
+
+      console.log(updatedBlogData);
+      // Clear the commentText state after submitting
+      setCommentText("");
+
+      // Optionally, you can call your updateBlog function here
+      await updateBlog(id, updatedBlogData);
+
+      toast.success("Comment added successfully");
+      // setCommentDialog(false);
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
+  };
+
+  const [commentDialog, setCommentDialog] = useState(false);
+  const commentDialogHandler = () => {
+    setCommentDialog(!commentDialog);
   };
 
   const closeCommentDialog = () => {
@@ -59,13 +89,6 @@ const SingleBlog = () => {
     navigate(`/createBlog/${id}`);
   };
 
-  // Check if blogs or blogs.data is undefined
-  // if (!blogs || !blogs.data) {
-  //   return <p>Blogs data is not available.</p>;
-  // }
-
-  console.log(singleBlog);
-
   const originalDateString = singleBlog.datePublished;
   const originalDate = new Date(originalDateString);
 
@@ -74,6 +97,10 @@ const SingleBlog = () => {
   const formattedTime = originalDate.toLocaleTimeString(); // Change according to your requirements
 
   // The rest of your component logic goes here
+
+  useEffect(() => {
+    fetchSingleBlog(id);
+  }, [id, updateBlog]);
 
   return (
     <>
@@ -110,28 +137,32 @@ const SingleBlog = () => {
           </div>
 
           {/* heading */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 mt-5">
             <div></div>
             <div>
-              <h1 className="text-2xl text-center capitalize font-semibold">
+              <h1 className="text-2xl text-center capitalize font-bold">
                 {singleBlog.title}
               </h1>
             </div>
             <div className="text-3xl flex gap-3">
-              <button
-                type="button"
-                className="text-red-500"
-                onClick={() => deleteHandler(singleBlog._id)}
-              >
-                <MdDelete />
-              </button>
-              <button
-                type="button"
-                className="text-yellow-500"
-                onClick={() => updateBlogHandler(singleBlog._id)}
-              >
-                <TbEdit />
-              </button>
+              {user?.username === singleBlog?.author && (
+                <>
+                  <button
+                    type="button"
+                    className="text-red-500"
+                    onClick={() => deleteHandler(singleBlog._id)}
+                  >
+                    <MdDelete />
+                  </button>
+                  <button
+                    type="button"
+                    className="text-yellow-500"
+                    onClick={() => updateBlogHandler(singleBlog._id)}
+                  >
+                    <TbEdit />
+                  </button>
+                </>
+              )}
             </div>
           </div>
 
@@ -149,7 +180,7 @@ const SingleBlog = () => {
           </div>
 
           {/* content */}
-          <div className="pb-5 mb-5 border-b border-gray-500">
+          <div className="pb-5 mb-5 border-b border-gray-500 text-[1.25rem]">
             {singleBlog.content}
           </div>
 
@@ -236,7 +267,7 @@ const SingleBlog = () => {
                                           <div className="flex flex-col gap-2 py-4">
                                             <div className="flex gap-2">
                                               <img
-                                                src="https://cdn.hashnode.com/res/hashnode/image/upload/v1697035804037/d91ddbd6-f8f0-464e-b5dd-912e25ab8470.jpeg?w=500&h=500&fit=crop&crop=faces&auto=compress,format&format=webp"
+                                                src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
                                                 alt="user-img"
                                                 className="w-[50px] h-[50px] rounded-full"
                                               />
@@ -245,7 +276,6 @@ const SingleBlog = () => {
                                                   {comment.author}
                                                 </h3>
                                                 <span className="flex text-gray-400 gap-2">
-                                                  <p>Janarthanan@gmail.com</p>
                                                   <p>
                                                     {" "}
                                                     {formattedDate}{" "}
@@ -270,19 +300,20 @@ const SingleBlog = () => {
                               <div className="flex justify-between text-base font-medium text-gray-900">
                                 <input
                                   type="text"
+                                  value={commentText}
+                                  onChange={handleChange}
                                   placeholder="Add Your comments here"
                                   className="p-2 focus:outline-none"
                                 />
                               </div>
 
                               <div className="mt-6">
-                                <a
-                                  href="#"
-                                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                <button
+                                  className="w-full flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                   onClick={handleCommentSubmit}
                                 >
                                   Submit
-                                </a>
+                                </button>
                               </div>
                               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>

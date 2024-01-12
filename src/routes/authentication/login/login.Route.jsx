@@ -2,8 +2,11 @@ import { useState } from "react";
 import { RiQuillPenLine } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../../context/user.Context";
 
 const Login = () => {
+  const { loginUser, token, loggedInUser } = useUserContext();
+
   const initialFormDataValues = {
     username: "",
     password: "",
@@ -20,17 +23,25 @@ const Login = () => {
     }));
   };
 
+  console.log("token:", token);
+  console.log("loggedIn:", loggedInUser);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log("formData:", formData);
+      await loginUser(formData);
       toast.success("Logged In Successful!");
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(loggedInUser));
       setTimeout(() => {
         navigate("/");
       }, 1000);
       setFormData(initialFormDataValues);
     } catch (error) {
-      console.log(error);
+      console.error("Something went wrong:", error);
+      // Display the error message to the user
+      toast.error(error || "Something went wrong!");
     }
   };
   return (

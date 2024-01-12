@@ -52,7 +52,9 @@ const SignUp = () => {
       }, 1000);
       setFormData(initialFormDataValues);
     } catch (error) {
-      console.log(error);
+      console.error("Something went wrong:", error);
+      // Display the error message to the user
+      toast.error(error || "Something went wrong!");
     }
   };
 
