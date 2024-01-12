@@ -37,8 +37,8 @@ const UserContextProvider = ({ children }) => {
       console.log("Added Data:", response.data.data);
       dispatch({ type: "ADD_USER", payload: response.data });
     } catch (error) {
-      console.error("Error in adding users:", error.response.data);
-      throw error.response.data; // Throw the error message
+      console.error("Error in adding users:", error.response.data.message);
+      throw error.response.data.message; // Throw the error message
     }
   };
 

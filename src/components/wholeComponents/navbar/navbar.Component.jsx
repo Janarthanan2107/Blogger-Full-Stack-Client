@@ -45,7 +45,7 @@ const Navbar = () => {
           >
             My feeds
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/category"
             className={({ isActive }) =>
               isActive
@@ -54,7 +54,7 @@ const Navbar = () => {
             }
           >
             Category
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/recent"
             className={({ isActive }) =>

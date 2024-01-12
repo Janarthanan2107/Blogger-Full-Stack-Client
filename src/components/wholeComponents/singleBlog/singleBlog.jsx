@@ -40,6 +40,7 @@ const SingleBlog = () => {
       const newComment = {
         text: commentText,
         author: user.username,
+        authorImage: user.image,
         date: new Date().toISOString(),
       };
 
@@ -128,7 +129,7 @@ const SingleBlog = () => {
       <div className="flex justify-center">
         <div className="w-[70%] flex flex-col gap-3">
           {/* blog image */}
-          <div className="rounded-3xl border border-gray-400 overflow-hidden flex justify-center">
+          <div className="rounded-3xl overflow-hidden flex justify-center">
             <img
               src={singleBlog.image}
               alt="blog-img"
@@ -137,8 +138,7 @@ const SingleBlog = () => {
           </div>
 
           {/* heading */}
-          <div className="grid grid-cols-3 gap-4 mt-5">
-            <div></div>
+          <div className="flex justify-center items-center p-5 gap-4">
             <div>
               <h1 className="text-2xl text-center capitalize font-bold">
                 {singleBlog.title}
@@ -169,9 +169,13 @@ const SingleBlog = () => {
           {/* date & author*/}
           <div className="flex gap-2 justify-center items-center text-gray-400 mb-3">
             <img
-              src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+              src={
+                singleBlog.authorImage
+                  ? singleBlog.authorImage
+                  : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+              }
               alt="user-img"
-              className="w-[50px] h-[50px] rounded-full"
+              className="w-[40px] h-[40px] rounded-full border border-gray-400"
             />
             <p className="text-sm capitalize">{singleBlog.author}</p>
             <p className="text-sm">
@@ -187,18 +191,18 @@ const SingleBlog = () => {
           {/* like and comments */}
           <div className="mb-5 flex justify-center">
             <div className="py-3 px-4 border border-gray-300 flex justify-center items-center gap-5 rounded-xl">
-              <button className="flex items-center gap-1 hover:text-red-500">
+              <button className="flex items-center gap-1 text-red-500">
                 <FaHeart />
                 {singleBlog.likes}
               </button>
               <button
                 className={`${
                   commentDialog ? `text-sky-700 ` : ``
-                }flex items-center gap-1 hover:text-sky-500`}
+                }flex items-center gap-1 text-sky-500`}
                 onClick={commentDialogHandler}
               >
                 <BiComment />
-                {/* {singleBlog.comments.length} */}
+                {singleBlog.comments?.length}
               </button>
 
               {/* comment dialog box */}
@@ -267,7 +271,11 @@ const SingleBlog = () => {
                                           <div className="flex flex-col gap-2 py-4">
                                             <div className="flex gap-2">
                                               <img
-                                                src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                                                src={
+                                                  comment.authorImage
+                                                    ? comment.authorImage
+                                                    : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                                                }
                                                 alt="user-img"
                                                 className="w-[50px] h-[50px] rounded-full"
                                               />
@@ -275,7 +283,7 @@ const SingleBlog = () => {
                                                 <h3 className="text-base font-semibold">
                                                   {comment.author}
                                                 </h3>
-                                                <span className="flex text-gray-400 gap-2">
+                                                <span className="flex text-gray-400 text-[0.70rem] gap-2">
                                                   <p>
                                                     {" "}
                                                     {formattedDate}{" "}
@@ -303,13 +311,13 @@ const SingleBlog = () => {
                                   value={commentText}
                                   onChange={handleChange}
                                   placeholder="Add Your comments here"
-                                  className="p-2 focus:outline-none"
+                                  className="p-2 focus:outline-none w-full"
                                 />
                               </div>
 
                               <div className="mt-6">
                                 <button
-                                  className="w-full flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                  className="w-full flex items-center justify-center rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700"
                                   onClick={handleCommentSubmit}
                                 >
                                   Submit
@@ -319,7 +327,7 @@ const SingleBlog = () => {
                                 <p>
                                   <button
                                     type="button"
-                                    className="font-medium text-indigo-600 hover:text-indigo-500 ml-1"
+                                    className="font-medium text-blue-600 hover:text-indigo-500 ml-1"
                                     onClick={closeCommentDialog}
                                   >
                                     Cancel

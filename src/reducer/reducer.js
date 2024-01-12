@@ -51,8 +51,9 @@ export const blogReducer = (state, action) => {
 
 export const userReducer = (state, action) => {
     switch (action.type) {
-        case "FETCH_USER":
-
+        case "FETCH_USERS":
+            console.log("state:", state)
+            console.log("action:", action.payload)
             return {
                 ...state,
                 users: action.payload,
@@ -81,8 +82,6 @@ export const userReducer = (state, action) => {
             }
 
         case "LOGIN_USER":
-            // console.log("state:", state)
-            // console.log("action:", action.payload)
             return {
                 ...state,
                 token: action.payload.token,

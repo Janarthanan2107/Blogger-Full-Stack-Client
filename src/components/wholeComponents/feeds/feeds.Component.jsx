@@ -4,16 +4,16 @@ import { FaLinkedin, FaInstagram, FaDiscord } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
 
 // constants
-import { blogsData } from "../../../constants";
+// import { blogsData } from "../../../constants";
 import { useEffect, useState } from "react";
 import { useBlogContext } from "../../../context/blog.Context";
 import { useUserContext } from "../../../context/user.Context";
-import { config } from "../../../constants/config";
 
 const Feeds = () => {
   const { fetchBlogs, blogs } = useBlogContext();
   const { fetchUsers, token, loggedInUser, users } = useUserContext();
 
+  console.log(users);
   useEffect(() => {
     // Fetch blogs when the component mounts
     fetchBlogs();
@@ -78,11 +78,13 @@ const Feeds = () => {
             </h4>
             {/* feeds */}
             {(searchTerm === "" ? blogs.data : searchResults)?.length > 0 ? (
-              (searchTerm === "" ? blogs.data : searchResults)?.map((blog) => (
-                <a href={`/blog/${blog._id}`} key={blog._id}>
-                  <FeedCard blog={blog} />
-                </a>
-              ))
+              (searchTerm === "" ? blogs.data : searchResults)
+                ?.map((blog) => (
+                  <a href={`/blog/${blog._id}`} key={blog._id}>
+                    <FeedCard blog={blog} />
+                  </a>
+                ))
+                .reverse()
             ) : (
               <div className="p-4 rounded-2xl border-gray-300 border flex justify-between items-center gap-5 mb-5 cursor-pointer hover:shadow-lg">
                 {/* details */}
@@ -102,16 +104,21 @@ const Feeds = () => {
               <h4 className="font-semibold text-base mb-4 text-gray-700 underline underline-offset-8 px-4">
                 Top Commentator's :
               </h4>
-              {blogs.data?.map((blog) => {
+              {users.data?.map((user) => {
                 return (
                   <div
-                    key={blog._id}
+                    key={user._id}
                     className="flex justify-between items-center text-sm hover:bg-gray-100"
                   >
                     <p className="text-gray-700 font-medium block px-4 py-2 mb-1">
-                      {blog.author}
+                      {user.username}
                     </p>
-                    <IoMdContact className="mr-3 text-3xl" />
+                    {/* <IoMdContact className="mr-3 text-3xl" /> */}
+                    <img
+                      className="h-8 w-8 rounded-full border border-gray-400 mr-3"
+                      src={user.image}
+                      alt={user.username}
+                    />
                   </div>
                 );
               })}

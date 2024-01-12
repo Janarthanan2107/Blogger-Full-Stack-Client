@@ -24,6 +24,7 @@ const CreateBlog = () => {
     title: "",
     content: "",
     author: user.username,
+    authorImage: user.image,
     tags: [],
     datePublished: new Date().toISOString(),
     comments: [],
@@ -196,7 +197,7 @@ const CreateBlog = () => {
                 value={blogData.content}
                 onChange={handleChange}
                 placeholder="Add content..."
-                className="w-full h-96 p-4 border-none focus:outline-none text-3xl font-semibold"
+                className="w-full h-96 p-4 border-none focus:outline-none text-[1.25rem] font-semibold"
               />
             </div>
           </form>

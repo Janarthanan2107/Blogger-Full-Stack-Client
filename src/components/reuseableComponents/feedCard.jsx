@@ -6,6 +6,7 @@ const FeedCard = ({ blog }) => {
     title,
     content,
     author,
+    authorImage,
     tags,
     datePublished,
     comments,
@@ -29,13 +30,17 @@ const FeedCard = ({ blog }) => {
         {/* user details */}
         <div className="flex gap-2 items-center">
           <img
-            src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+            src={
+              authorImage
+                ? authorImage
+                : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+            }
             alt="user-img"
-            className="w-[50px] h-[50px] rounded-full"
+            className="w-[50px] h-[50px] rounded-full border border-gray-400"
           />
           <div>
             <h3 className="text-base font-semibold capitalize">{author}</h3>
-            <span className="flex text-gray-400 gap-2">
+            <span className="flex text-gray-400 gap-2 text-[0.70rem]">
               <p>
                 {formattedDate} {formattedTime}
               </p>
