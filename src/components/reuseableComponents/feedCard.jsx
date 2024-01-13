@@ -50,7 +50,7 @@ const FeedCard = ({ blog }) => {
 
         {/* blog details */}
         <div className="w-[500px] flex flex-col gap-1 mt-3">
-          <p className="text-[1.2rem] font-semibold line-clamp-1">
+          <p className="text-[1.1rem] font-semibold line-clamp-1">
             {title.charAt(0).toUpperCase() + title.slice(1)}
           </p>
           <p className="line-clamp-2 text-gray-400 text-sm mt-3">

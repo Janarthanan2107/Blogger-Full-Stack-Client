@@ -29,7 +29,7 @@ const CreateBlog = () => {
     datePublished: new Date().toISOString(),
     comments: [],
     image: null,
-    likes: 50,
+    likes: 0,
   });
 
   const [isEditing, setIsEditing] = useState(false);
