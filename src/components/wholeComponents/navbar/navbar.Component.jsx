@@ -168,7 +168,7 @@ const Navbar = () => {
                 </a> */}
                 <form>
                   <button
-                    type="submit"
+                    type="button"
                     className={`text-gray-700 block w-full px-4 py-2 text-left text-sm hover:bg-blue-600 hover:text-white ${
                       signingOut ? "cursor-not-allowed" : ""
                     }`}
