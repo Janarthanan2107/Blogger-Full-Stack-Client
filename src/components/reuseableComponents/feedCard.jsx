@@ -14,7 +14,7 @@ const FeedCard = ({ blog }) => {
     likes,
   } = blog;
 
-  const getFirstTag = tags.filter((tag, index) => index < 1);
+  const getFirstTag = tags?.filter((tag, index) => index < 1);
 
   const originalDateString = datePublished;
   const originalDate = new Date(originalDateString);
