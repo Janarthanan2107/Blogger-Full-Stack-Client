@@ -8,6 +8,7 @@ import { IoMdContact } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { useBlogContext } from "../../../context/blog.Context";
 import { useUserContext } from "../../../context/user.Context";
+import { Link } from "react-router-dom";
 
 const Feeds = () => {
   const { fetchBlogs, blogs } = useBlogContext();
@@ -80,9 +81,9 @@ const Feeds = () => {
             {(searchTerm === "" ? blogs.data : searchResults)?.length > 0 ? (
               (searchTerm === "" ? blogs.data : searchResults)
                 ?.map((blog) => (
-                  <a href={`/blog/${blog._id}`} key={blog._id}>
+                  <Link to={`/blog/${blog._id}`} key={blog._id}>
                     <FeedCard blog={blog} />
-                  </a>
+                  </Link>
                 ))
                 .reverse()
             ) : (
