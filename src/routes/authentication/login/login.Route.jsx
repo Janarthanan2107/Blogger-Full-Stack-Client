@@ -3,6 +3,7 @@ import { RiQuillPenLine } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../../context/user.Context";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { loginUser, token, loggedInUser } = useUserContext();
@@ -135,12 +136,12 @@ const Login = () => {
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Not a member?
-          <a
-            href="/signUp"
+          <Link
+            to={"/signUp"}
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 ml-2"
           >
             register now
-          </a>
+          </Link>
         </p>
       </div>
     </div>
