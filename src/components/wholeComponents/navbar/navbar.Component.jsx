@@ -19,10 +19,29 @@ const Navbar = () => {
 
   const isUserSignedIn = !!localStorage.getItem("token");
 
-  const handleSignOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/login");
+  const [signingOut, setSigningOut] = useState(false);
+
+  const handleSignOut = async () => {
+    try {
+      // Set the loading state to true
+      setSigningOut(true);
+
+      // Perform the signout action
+      // For example, make an API call to revoke the authentication token
+      // ...
+
+      // Clear local storage
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
+      // Navigate to the login page
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during signout:", error);
+    } finally {
+      // Set the loading state back to false
+      setSigningOut(false);
+    }
   };
 
   return (
@@ -150,12 +169,15 @@ const Navbar = () => {
                 <form>
                   <button
                     type="submit"
-                    className="text-gray-700 block w-full px-4 py-2 text-left text-sm hover:bg-blue-600 hover:text-white"
+                    className={`text-gray-700 block w-full px-4 py-2 text-left text-sm hover:bg-blue-600 hover:text-white ${
+                      signingOut ? "cursor-not-allowed" : ""
+                    }`}
                     role="menuitem"
                     id="menu-item-3"
                     onClick={handleSignOut}
+                    disabled={signingOut}
                   >
-                    Sign out
+                    {signingOut ? "Signing Out..." : "Sign out"}
                   </button>
                 </form>
               </div>
