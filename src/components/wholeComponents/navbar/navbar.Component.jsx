@@ -21,11 +21,11 @@ const Navbar = () => {
 
   const [signingOut, setSigningOut] = useState(false);
 
-  const handleSignOut = async () => {
+const handleSignOut = async () => {
     try {
       // Set the loading state to true
       setSigningOut(true);
-
+      setUserMenu(false);
       // Perform the signout action
       // For example, make an API call to revoke the authentication token
       // ...
