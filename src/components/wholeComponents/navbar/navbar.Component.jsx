@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const [signingOut, setSigningOut] = useState(false);
 
-const handleSignOut = async () => {
+  const handleSignOut = async () => {
     try {
       // Set the loading state to true
       setSigningOut(true);
