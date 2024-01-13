@@ -14,10 +14,12 @@ const SingleBlog = () => {
     useBlogContext();
 
   let navigate = useNavigate();
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const fetchSingleBlog = async (id) => {
     try {
       await getSingleBlog(id);
+      setLoading(false); // Set loading to false after fetching data
     } catch (error) {
       console.error(error);
     }
@@ -102,6 +104,11 @@ const SingleBlog = () => {
   useEffect(() => {
     fetchSingleBlog(id);
   }, [id, updateBlog]);
+
+  if (loading) {
+    // Show loading message or spinner while data is being fetched
+    return <p className="text-center font-semibold text-[1.25rem]">Blog has Loading...</p>;
+  }
 
   return (
     <>
@@ -192,7 +199,7 @@ const SingleBlog = () => {
           <div className="mb-5 flex justify-center">
             <div className="py-3 px-4 border border-gray-300 flex justify-center items-center gap-5 rounded-xl">
               <button className="flex items-center gap-1 text-red-500">
-                <FaHeart />
+                <FaRegHeart />
                 {singleBlog.likes}
               </button>
               <button
