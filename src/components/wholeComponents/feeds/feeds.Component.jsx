@@ -14,11 +14,21 @@ const Feeds = () => {
   const { fetchBlogs, blogs } = useBlogContext();
   const { fetchUsers, token, loggedInUser, users } = useUserContext();
 
-  console.log(users);
+  const [loading, setLoading] = useState(true); // Add loading state
   useEffect(() => {
-    // Fetch blogs when the component mounts
-    fetchBlogs();
-    fetchUsers();
+    const fetchData = async () => {
+      try {
+        await fetchBlogs();
+        await fetchUsers();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        // Set loading to false when fetching is complete
+        setLoading(false);
+      }
+    };
+
+    fetchData();
 
     if (token === "" && loggedInUser === "") {
       return;
@@ -92,7 +102,11 @@ const Feeds = () => {
                 <div className="flex flex-col gap-2 w-[600px]">
                   {/* user details */}
                   <div className="flex gap-2 items-center">
-                    <p>No data found</p>
+                    {loading ? (
+                      <p>Blogs are fetching....</p>
+                    ) : (
+                      <p>No Data found</p>
+                    )}
                   </div>
                 </div>
               </div>
