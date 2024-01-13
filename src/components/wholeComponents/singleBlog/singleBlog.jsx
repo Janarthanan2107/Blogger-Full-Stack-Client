@@ -35,8 +35,13 @@ const SingleBlog = () => {
     setCommentText(e.target.value);
   };
 
-  const handleCommentSubmit = async (e) => {
+    const handleCommentSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      toast.error("Login before you add your idea's");
+      return;
+    }
 
     try {
       const newComment = {
