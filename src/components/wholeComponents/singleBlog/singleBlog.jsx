@@ -30,18 +30,21 @@ const SingleBlog = () => {
   const user = storedUser ? JSON.parse(storedUser) : null;
 
   const [commentText, setCommentText] = useState("");
+  const [commentLoading, setCommentLoading] = useState(false);
 
   const handleChange = (e) => {
     setCommentText(e.target.value);
   };
 
-    const handleCommentSubmit = async (e) => {
+  const handleCommentSubmit = async (e) => {
     e.preventDefault();
 
     if (!user) {
       toast.error("Login before you add your idea's");
       return;
     }
+
+    setCommentLoading(true);
 
     try {
       const newComment = {
@@ -57,17 +60,18 @@ const SingleBlog = () => {
         comments: [...singleBlog.comments, newComment],
       };
 
-      console.log(updatedBlogData);
       // Clear the commentText state after submitting
       setCommentText("");
 
-      // Optionally, you can call your updateBlog function here
+      // Make the API request (replace with your actual API call)
       await updateBlog(id, updatedBlogData);
 
       toast.success("Comment added successfully");
-      // setCommentDialog(false);
     } catch (error) {
       console.error("Error adding comment:", error);
+      toast.error("Error adding comment. Please try again.");
+    } finally {
+      setCommentLoading(false);
     }
   };
 
@@ -335,8 +339,11 @@ const SingleBlog = () => {
                                     <button
                                       className="w-full flex items-center justify-center rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700"
                                       onClick={handleCommentSubmit}
+                                      disabled={commentLoading}
                                     >
-                                      Submit
+                                      {commentLoading
+                                        ? "Submitting..."
+                                        : "Submit"}
                                     </button>
                                   </div>
                                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
