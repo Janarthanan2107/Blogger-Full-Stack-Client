@@ -137,11 +137,28 @@ const SingleBlog = () => {
           },
         }}
       />
+
       {loading ? (
         <>
-          <p className="text-center font-semibold text-[1.25rem]">
-            Blog has Loading...
-          </p>
+          <div class="p-4 w-[850px] h-[200px] mx-auto">
+            <div class="animate-pulse flex flex-col space-x-4">
+              <div class="rounded-full bg-slate-700 h-10 w-10 my-3 mx-3"></div>
+              <div class="flex-1 space-y-6 py-1">
+                <div class="h-2 bg-slate-700 rounded"></div>
+                <div class="space-y-3">
+                  <div class="grid grid-cols-3 gap-4">
+                    <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                    <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                  </div>
+                  <div class="h-2 bg-slate-700 rounded"></div>
+                  <div class="grid grid-cols-3 gap-4">
+                    <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                    <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       ) : (
         <>

@@ -11,7 +11,7 @@ import { useUserContext } from "../../../context/user.Context";
 import { Link } from "react-router-dom";
 
 const Feeds = () => {
-  const { fetchBlogs, blogs } = useBlogContext();
+  const { fetchBlogs, blogs, deleteSingleBlog } = useBlogContext();
   const { fetchUsers, token, loggedInUser, users } = useUserContext();
 
   const [loading, setLoading] = useState(true); // Add loading state
@@ -37,7 +37,7 @@ const Feeds = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(loggedInUser));
     }
-  }, []);
+  }, [deleteSingleBlog]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -99,11 +99,29 @@ const Feeds = () => {
             ) : (
               <div className="p-4 rounded-2xl border-gray-300 border flex justify-between items-center gap-5 mb-5 cursor-pointer hover:shadow-lg">
                 {/* details */}
-                <div className="flex flex-col gap-2 w-[600px]">
+                <div className="flex flex-col gap-2 w-[700px]">
                   {/* user details */}
                   <div className="flex gap-2 items-center">
                     {loading ? (
-                      <p>Blogs are fetching....</p>
+                      <div class="w-full h-[170px] mx-auto">
+                        <div class="animate-pulse flex flex-col space-x-4">
+                          <div class="rounded-full bg-slate-700 h-10 w-10 my-3 mx-3"></div>
+                          <div class="flex-1 space-y-6 py-1">
+                            <div class="h-2 bg-slate-700 rounded"></div>
+                            <div class="space-y-3">
+                              <div class="grid grid-cols-3 gap-4">
+                                <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                                <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                              </div>
+                              <div class="h-2 bg-slate-700 rounded"></div>
+                              <div class="grid grid-cols-3 gap-4">
+                                <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                                <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     ) : (
                       <p>No Data found</p>
                     )}
@@ -119,24 +137,46 @@ const Feeds = () => {
               <h4 className="font-semibold text-base mb-4 text-gray-700 underline underline-offset-8 px-4">
                 Top Commentator's :
               </h4>
-              {users.data?.map((user) => {
-                return (
-                  <div
-                    key={user._id}
-                    className="flex justify-between items-center text-sm hover:bg-gray-100"
-                  >
-                    <p className="text-gray-700 font-medium block px-4 py-2 mb-1">
-                      {user.username}
-                    </p>
-                    {/* <IoMdContact className="mr-3 text-3xl" /> */}
-                    <img
-                      className="h-8 w-8 rounded-full border border-gray-400 mr-3"
-                      src={user.image}
-                      alt={user.username}
-                    />
+              {loading ? (
+                <>
+                  <div class="p-4 max-w-sm w-full mx-auto">
+                    <div class="animate-pulse flex flex-row-reverse gap-3 space-x-4">
+                      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+                      <div class="flex-1 space-y-6 py-1">
+                        <div class="h-2 bg-slate-700 rounded"></div>
+                        <div class="space-y-3">
+                          <div class="grid grid-cols-3 gap-4">
+                            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                          </div>
+                          <div class="h-2 bg-slate-700 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
+                </>
+              ) : (
+                <>
+                  {users.data?.map((user) => {
+                    return (
+                      <div
+                        key={user._id}
+                        className="flex justify-between items-center text-sm hover:bg-gray-100"
+                      >
+                        <p className="text-gray-700 font-medium block px-4 py-2 mb-1">
+                          {user.username}
+                        </p>
+                        {/* <IoMdContact className="mr-3 text-3xl" /> */}
+                        <img
+                          className="h-8 w-8 rounded-full border border-gray-400 mr-3"
+                          src={user.image}
+                          alt={user.username}
+                        />
+                      </div>
+                    );
+                  })}
+                </>
+              )}
             </div>
             <div className="bg-gray-500 text-white p-5 rounded-md flex flex-col gap-3">
               <div>
