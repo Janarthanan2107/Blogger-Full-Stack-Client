@@ -73,7 +73,7 @@ const Navbar = () => {
             }
           >
             Category
-          </NavLink> */}
+          </NavLink> 
           <NavLink
             to="/recent"
             className={({ isActive }) =>
@@ -93,7 +93,7 @@ const Navbar = () => {
             }
           >
             Commentators
-          </NavLink>
+          </NavLink> */}
         </div>
         {/* profile */}
         <div className="flex justify-between items-center gap-4">
