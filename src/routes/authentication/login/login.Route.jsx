@@ -146,8 +146,8 @@ const Login = () => {
         <div>
           <p className="flex justify-between flex-col gap-[1.025rem]">
             <span className="text-yellow-500 text-xl font-bold">Blogger Credentials</span>
-            <span className="flex"><span className="block text-sm font-medium leading-6 text-gray-900">Username: </span>Janarthanan</span>
-            <span className="flex"><span className="block text-sm font-medium leading-6 text-gray-900">Password: </span>12345678</span>
+            <span className="flex gap-1.5"><span className="block text-sm font-medium leading-6 text-gray-900">Username: </span>Janarthanan</span>
+            <span className="flex gap-1.5"><span className="block text-sm font-medium leading-6 text-gray-900">Password: </span>12345678</span>
           </p>
         </div>
       </div>
