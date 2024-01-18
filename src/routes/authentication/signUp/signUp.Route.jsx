@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RiQuillPenLine } from "react-icons/ri";
 import FileBase64 from "react-file-base64";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { useUserContext } from "../../../context/user.Context";
 
 const SignUp = () => {
@@ -264,12 +264,12 @@ const SignUp = () => {
 
         <p className="mt-6 text-center text-sm text-gray-500">
           already a blogger?
-          <a
-            href="/login"
+         <Link
+            to={"/login"}
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 ml-2"
           >
             login now
-          </a>
+          </Link>
         </p>
       </div>
     </div>
