@@ -144,13 +144,9 @@ const Login = () => {
         </p>
         <br />
         <div>
-          <p>
+          <p className="flex justify-between flex-col gap-[1.2rem]">
             <span style={{ fontWeight: 600,color:"gold" }}>Blogger Credentials</span>
-            <br />
-            <br />
             Email: janarthanan.v2107@gmail.com
-            <br />
-            <br />
             Password: 12345678
           </p>
         </div>
