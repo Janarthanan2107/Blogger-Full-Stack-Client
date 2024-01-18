@@ -142,6 +142,18 @@ const Login = () => {
             register now
           </Link>
         </p>
+        <br />
+        <div>
+          <p>
+            <span style={{ fontWeight: 600,color:"gold" }}>Admin Credentials</span>
+            <br />
+            <br />
+            Email: janarthanan.v2107@gmail.com
+            <br />
+            <br />
+            Password: 12345678
+          </p>
+        </div>
       </div>
     </div>
   );
