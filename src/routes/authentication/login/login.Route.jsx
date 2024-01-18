@@ -146,8 +146,8 @@ const Login = () => {
         <div>
           <p className="flex justify-between flex-col gap-[1.025rem]">
             <span style={{ fontWeight: 600,color:"gold" }}>Blogger Credentials</span>
-            <span><span className="block text-sm font-medium leading-6 text-gray-900">Username: </span>Janarthanan</span>
-            <span><span className="block text-sm font-medium leading-6 text-gray-900">Password: </span>12345678</span>
+            <span className="flex"><span className="block text-sm font-medium leading-6 text-gray-900">Username: </span>Janarthanan</span>
+            <span className="flex"><span className="block text-sm font-medium leading-6 text-gray-900">Password: </span>12345678</span>
           </p>
         </div>
       </div>
