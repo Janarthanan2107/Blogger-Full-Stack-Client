@@ -147,7 +147,9 @@ const Login = () => {
           <p>
             <span style={{ fontWeight: 600,color:"gold" }}>Blogger Credentials</span>
             <br />
+            <br />
             Email: janarthanan.v2107@gmail.com
+            <br />
             <br />
             Password: 12345678
           </p>
