@@ -1,5 +1,5 @@
 const config = {
-    url: "https://kind-pink-barracuda-tam.cyclic.app/api/v1/"
+    url: "https://calm-rose-llama-suit.cyclic.app/api/v1/"
     // url: "http://localhost:5000/api/v1/"
 }
 
