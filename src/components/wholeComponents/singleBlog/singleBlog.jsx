@@ -30,7 +30,7 @@ const SingleBlog = () => {
   const user = storedUser ? JSON.parse(storedUser) : null;
 
   const [commentText, setCommentText] = useState("");
-  const [commentLoading, setCommentLoading] = useState(false);
+  const [commentLoading, setCommentLoading] = useState();
 
   const handleChange = (e) => {
     setCommentText(e.target.value);
@@ -112,7 +112,7 @@ const SingleBlog = () => {
 
   useEffect(() => {
     fetchSingleBlog(id);
-  }, [id, updateBlog]);
+  }, [id, commentLoading]);
 
   return (
     <>
@@ -140,20 +140,20 @@ const SingleBlog = () => {
 
       {loading ? (
         <>
-          <div class="p-4 w-[850px] h-[200px] mx-auto">
-            <div class="animate-pulse flex flex-col space-x-4">
-              <div class="rounded-full bg-slate-700 h-10 w-10 my-3 mx-3"></div>
-              <div class="flex-1 space-y-6 py-1">
-                <div class="h-2 bg-slate-700 rounded"></div>
-                <div class="space-y-3">
-                  <div class="grid grid-cols-3 gap-4">
-                    <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-                    <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          <div className="p-4 w-[850px] h-[200px] mx-auto">
+            <div className="animate-pulse flex flex-col space-x-4">
+              <div className="rounded-full bg-slate-700 h-10 w-10 my-3 mx-3"></div>
+              <div className="flex-1 space-y-6 py-1">
+                <div className="h-2 bg-slate-700 rounded"></div>
+                <div className="space-y-3">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="h-2 bg-slate-700 rounded col-span-2"></div>
+                    <div className="h-2 bg-slate-700 rounded col-span-1"></div>
                   </div>
-                  <div class="h-2 bg-slate-700 rounded"></div>
-                  <div class="grid grid-cols-3 gap-4">
-                    <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-                    <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                  <div className="h-2 bg-slate-700 rounded"></div>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="h-2 bg-slate-700 rounded col-span-1"></div>
+                    <div className="h-2 bg-slate-700 rounded col-span-2"></div>
                   </div>
                 </div>
               </div>
