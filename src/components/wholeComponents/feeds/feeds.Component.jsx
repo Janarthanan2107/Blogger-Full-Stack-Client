@@ -37,7 +37,7 @@ const Feeds = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(loggedInUser));
     }
-  }, []);
+  }, [deleteSingleBlog]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -103,20 +103,20 @@ const Feeds = () => {
                   {/* user details */}
                   <div className="flex gap-2 items-center">
                     {loading ? (
-                      <div class="w-full h-[170px] mx-auto">
-                        <div class="animate-pulse flex flex-col space-x-4">
-                          <div class="rounded-full bg-slate-700 h-10 w-10 my-3 mx-3"></div>
-                          <div class="flex-1 space-y-6 py-1">
-                            <div class="h-2 bg-slate-700 rounded"></div>
-                            <div class="space-y-3">
-                              <div class="grid grid-cols-3 gap-4">
-                                <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-                                <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                      <div className="w-full h-[170px] mx-auto">
+                        <div className="animate-pulse flex flex-col space-x-4">
+                          <div className="rounded-full bg-slate-700 h-10 w-10 my-3 mx-3"></div>
+                          <div className="flex-1 space-y-6 py-1">
+                            <div className="h-2 bg-slate-700 rounded"></div>
+                            <div className="space-y-3">
+                              <div className="grid grid-cols-3 gap-4">
+                                <div className="h-2 bg-slate-700 rounded col-span-2"></div>
+                                <div className="h-2 bg-slate-700 rounded col-span-1"></div>
                               </div>
-                              <div class="h-2 bg-slate-700 rounded"></div>
-                              <div class="grid grid-cols-3 gap-4">
-                                <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-                                <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                              <div className="h-2 bg-slate-700 rounded"></div>
+                              <div className="grid grid-cols-3 gap-4">
+                                <div className="h-2 bg-slate-700 rounded col-span-1"></div>
+                                <div className="h-2 bg-slate-700 rounded col-span-2"></div>
                               </div>
                             </div>
                           </div>
@@ -139,17 +139,17 @@ const Feeds = () => {
               </h4>
               {loading ? (
                 <>
-                  <div class="p-4 max-w-sm w-full mx-auto">
-                    <div class="animate-pulse flex flex-row-reverse gap-3 space-x-4">
-                      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-                      <div class="flex-1 space-y-6 py-1">
-                        <div class="h-2 bg-slate-700 rounded"></div>
-                        <div class="space-y-3">
-                          <div class="grid grid-cols-3 gap-4">
-                            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-                            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+                  <div className="p-4 max-w-sm w-full mx-auto">
+                    <div className="animate-pulse flex flex-row-reverse gap-3 space-x-4">
+                      <div className="rounded-full bg-slate-700 h-10 w-10"></div>
+                      <div className="flex-1 space-y-6 py-1">
+                        <div className="h-2 bg-slate-700 rounded"></div>
+                        <div className="space-y-3">
+                          <div className="grid grid-cols-3 gap-4">
+                            <div className="h-2 bg-slate-700 rounded col-span-2"></div>
+                            <div className="h-2 bg-slate-700 rounded col-span-1"></div>
                           </div>
-                          <div class="h-2 bg-slate-700 rounded"></div>
+                          <div className="h-2 bg-slate-700 rounded"></div>
                         </div>
                       </div>
                     </div>
