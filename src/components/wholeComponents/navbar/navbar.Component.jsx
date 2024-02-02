@@ -48,10 +48,12 @@ const Navbar = () => {
     <div className="navbar-container w-auto h-18 p-4">
       <div className="flex justify-around items-center gap-4 border-b border-gray pb-4">
         {/* logo */}
-        <div className="logo-container flex">
-          <RiQuillPenLine className="text-yellow-500 text-[30px]" />
-          <p className="text-yellow-500 text-lg font-medium">Blogger.</p>
-        </div>
+        <NavLink to="/">
+          <div className="logo-container flex">
+            <RiQuillPenLine className="text-yellow-500 text-[30px]" />
+            <p className="text-yellow-500 text-lg font-medium">Blogger.</p>
+          </div>
+        </NavLink>
         {/* menu */}
         <div className="flex justify-between items-center gap-3">
           <NavLink
