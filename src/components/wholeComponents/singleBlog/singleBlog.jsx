@@ -160,7 +160,7 @@ const SingleBlog = () => {
             </div>
           </div>
         </>
-      ) : (
+      ) : singleBlog ? (
         <>
           <div className="flex justify-center">
             <div className="w-[70%] flex flex-col gap-3">
@@ -417,6 +417,8 @@ const SingleBlog = () => {
             </div>
           </div>
         </>
+      ) : (
+        ""
       )}
     </>
   );
