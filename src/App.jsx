@@ -20,25 +20,25 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/createBlog",
+        path: "createBlog",
         element: <CreateBlog />,
       },
       {
-        path: "/blog/:id",
+        path: "blog/:id",
         element: <SingleBlog />,
       },
       {
-        path: "/createBlog/:id",
+        path: "createBlog/:id",
         element: <CreateBlog />,
       },
 
       // user
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/signUp",
+        path: "signUp",
         element: <SignUp />,
       },
     ],
