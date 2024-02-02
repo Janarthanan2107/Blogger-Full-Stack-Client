@@ -37,7 +37,7 @@ const Feeds = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(loggedInUser));
     }
-  }, [deleteSingleBlog]);
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
